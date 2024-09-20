@@ -16,7 +16,7 @@ class Email
     /**
      * @var string
      */
-    private string $domain;
+    private ?string $domain = null;
 
     /**
      * @param string $email
@@ -43,9 +43,9 @@ class Email
      */
     private function getDomain(): ?string
     {
-        if (!$this->domain) {
+        if ($this->domain === null) {
             $domainParts = explode('@', $this->email);
-            $this->domain = $domainParts[1] ?? null;
+            $this->domain = $domainParts[1] ?? '';
         }
 
         return $this->domain;
